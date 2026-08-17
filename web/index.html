@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ScrumFlow | Guia Scrum</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07080d;
+    color: #f5f5ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+:root {
+    --bg: #07080d;
+    --bg2: #0e1018;
+    --card: #141722;
+    --card2: #191c29;
+    --text: #f5f5ff;
+    --muted: #999dac;
+    --purple: #8b5cf6;
+    --purple2: #a78bfa;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --orange: #f97316;
+    --red: #ef4444;
+    --border: rgba(255,255,255,.08);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08090e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6d43c7;
+    border-radius: 10px;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+
+    padding: 0 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(7,8,13,.75);
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid var(--border);
+
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.logo span span {
+    color: var(--purple2);
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #5b21b6
+    );
+
+    box-shadow: 0 0 30px rgba(139,92,246,.4);
+
+    font-size: 20px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 32px;
+}
+
+.navbar nav a {
+    color: #a9acba;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.navbar nav a:hover {
+    color: white;
+}
+
+.theme-button {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: .3s;
+}
+
+.theme-button:hover {
+    transform: rotate(15deg);
+    border-color: var(--purple);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    padding: 150px 8% 100px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 50px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    top: -100px;
+    left: -100px;
+
+    background: #8b5cf6;
+
+    filter: blur(200px);
+
+    opacity: .12;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    right: -100px;
+    bottom: -100px;
+
+    background: #3b82f6;
+
+    filter: blur(180px);
+
+    opacity: .08;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 15px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(139,92,246,.3);
+
+    background: rgba(139,92,246,.1);
+
+    color: var(--purple2);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--purple2);
+
+    box-shadow: 0 0 12px var(--purple);
+}
+
+.hero h1 {
+    margin-top: 25px;
+
+    font-size: clamp(50px, 6vw, 82px);
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+}
+
+.hero h1 .gradient {
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        white,
+        #a78bfa,
+        #7c3aed
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 570px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 17px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+.button {
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+    cursor: pointer;
+}
+
+.button-primary {
+    background: var(--purple);
+    color: white;
+
+    box-shadow: 0 12px 35px rgba(139,92,246,.3);
+}
+
+.button-primary:hover {
+    background: #7c3aed;
+    transform: translateY(-3px);
+}
+
+.button-secondary {
+    background: var(--card);
+    color: white;
+
+    border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+    background: var(--card2);
+    transform: translateY(-3px);
+}
+
+.stats {
+    display: flex;
+    gap: 50px;
+
+    margin-top: 55px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat strong {
+    font-size: 28px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================================
+   HERO SCRUM VISUAL
+========================================================= */
+
+.hero-visual {
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.scrum-circle {
+    width: 430px;
+    height: 430px;
+
+    border-radius: 50%;
+
+    border: 1px dashed rgba(139,92,246,.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    animation: rotate 25s linear infinite;
+}
+
+.scrum-circle::before {
+    content: "";
+
+    width: 310px;
+    height: 310px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(139,92,246,.3);
+
+    position: absolute;
+}
+
+.scrum-center {
+    width: 155px;
+    height: 155px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #30205d,
+        #110d19
+    );
+
+    border: 1px solid rgba(167,139,250,.5);
+
+    box-shadow:
+        0 0 70px rgba(139,92,246,.3),
+        inset 0 0 30px rgba(139,92,246,.15);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    animation: counterRotate 25s linear infinite;
+}
+
+.scrum-center-icon {
+    font-size: 43px;
+
+    color: var(--purple2);
+
+    margin-bottom: 5px;
+}
+
+.scrum-center strong {
+    font-size: 18px;
+
+    letter-spacing: 4px;
+}
+
+.orbit {
+    width: 58px;
+    height: 58px;
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #151722;
+
+    border: 1px solid var(--border);
+
+    font-size: 22px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,.5);
+
+    animation: counterRotate 25s linear infinite;
+}
+
+.orbit-1 {
+    top: 30px;
+    left: 75px;
+
+    color: #60a5fa;
+}
+
+.orbit-2 {
+    right: -5px;
+    top: 180px;
+
+    color: #4ade80;
+}
+
+.orbit-3 {
+    bottom: 25px;
+    left: 75px;
+
+    color: #fb923c;
+}
+
+.floating-card {
+    position: absolute;
+
+    top: 50px;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 18px;
+
+    background: rgba(20,23,34,.95);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+
+    animation: float 4s ease-in-out infinite;
+}
+
+.check {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(34,197,94,.12);
+
+    color: #4ade80;
+}
+
+.floating-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-text strong {
+    font-size: 12px;
+}
+
+.floating-text small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+.section {
+    padding: 120px 8%;
+}
+
+.dark-section {
+    background: #0d0f16;
+}
+
+.section-header {
+    max-width: 720px;
+
+    margin-bottom: 60px;
+}
+
+.section-number {
+    color: var(--purple2);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.section-header h2 {
+    margin-top: 10px;
+
+    font-size: clamp(38px, 5vw, 58px);
+
+    letter-spacing: -2px;
+
+    line-height: 1.1;
+}
+
+.section-header h2 span {
+    color: var(--purple2);
+}
+
+.section-header p {
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr 1fr;
+
+    gap: 20px;
+}
+
+.info-card {
+    min-height: 290px;
+
+    padding: 35px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .35s;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(139,92,246,.45);
+}
+
+.info-card.big {
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(139,92,246,.18),
+            transparent 50%
+        ),
+        var(--card);
+}
+
+.icon-box {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    margin-bottom: 25px;
+
+    font-size: 22px;
+}
+
+.purple-box {
+    background: rgba(139,92,246,.12);
+    color: var(--purple2);
+}
+
+.blue-box {
+    background: rgba(59,130,246,.12);
+    color: #60a5fa;
+}
+
+.green-box {
+    background: rgba(34,197,94,.12);
+    color: #4ade80;
+}
+
+.info-card h3 {
+    font-size: 20px;
+}
+
+.info-card p {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.big-number {
+    position: absolute;
+
+    right: 20px;
+    bottom: -15px;
+
+    font-size: 100px;
+
+    color: rgba(255,255,255,.025);
+
+    font-weight: 900;
+}
+
+/* =========================================================
+   PAPÉIS
+========================================================= */
+
+.roles {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.role-card {
+    min-height: 350px;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: .3s;
+}
+
+.role-card:hover {
+    transform: translateY(-8px);
+}
+
+.role-card.featured {
+    border-color: rgba(139,92,246,.5);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139,92,246,.14),
+            var(--card)
+        );
+}
+
+.role-number {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    color: rgba(255,255,255,.12);
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.role-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(139,92,246,.12);
+
+    color: var(--purple2);
+
+    font-size: 28px;
+
+    margin-bottom: 28px;
+}
+
+.role-card h3 {
+    font-size: 23px;
+}
+
+.role-card p {
+    margin-top: 14px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.role-tag {
+    display: inline-block;
+
+    margin-top: 24px;
+
+    padding: 6px 10px;
+
+    border-radius: 5px;
+
+    background: rgba(139,92,246,.1);
+
+    color: var(--purple2);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+/* =========================================================
+   EVENTOS
+========================================================= */
+
+.timeline {
+    max-width: 850px;
+
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 30px;
+
+    width: 1px;
+
+    background: var(--border);
+}
+
+.timeline-item {
+    display: flex;
+
+    gap: 30px;
+
+    padding: 25px 0;
+}
+
+.timeline-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    color: var(--purple2);
+
+    font-size: 21px;
+
+    z-index: 2;
+}
+
+.timeline-content small {
+    color: var(--purple2);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.timeline-content h3 {
+    margin-top: 4px;
+
+    font-size: 20px;
+}
+
+.timeline-content p {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   ARTEFATOS
+========================================================= */
+
+.artifacts {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.artifact {
+    padding: 30px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    transition: .3s;
+}
+
+.artifact:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(139,92,246,.4);
+}
+
+.artifact-icon {
+    font-size: 30px;
+
+    margin-bottom: 20px;
+}
+
+.artifact h3 {
+    font-size: 19px;
+}
+
+.artifact p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   BOARD
+========================================================= */
+
+.board-section {
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(139,92,246,.1),
+            transparent 45%
+        );
+}
+
+.board-controls {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.board-input {
+    flex: 1;
+
+    padding: 15px 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    outline: none;
+
+    background: var(--card);
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.board-input:focus {
+    border-color: var(--purple);
+}
+
+.add-button {
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--purple);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.add-button:hover {
+    background: #7c3aed;
+
+    transform: translateY(-2px);
+}
+
+.board {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.column {
+    min-height: 410px;
+
+    padding: 20px;
+
+    background: rgba(20,23,34,.7);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+}
+
+.column-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.column-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+.dot-purple {
+    background: var(--purple2);
+}
+
+.dot-orange {
+    background: var(--orange);
+}
+
+.dot-green {
+    background: var(--green);
+}
+
+.counter {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: rgba(255,255,255,.05);
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.tasks {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.task {
+    padding: 15px;
+
+    background: #191c27;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: .25s;
+
+    animation: taskAppear .3s ease;
+}
+
+.task:hover {
+    transform: translateX(5px);
+
+    border-color: rgba(139,92,246,.5);
+}
+
+.task small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #777c8c;
+
+    font-size: 9px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 60px 8% 30px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+.footer-logo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.footer-logo span span {
+    color: var(--purple2);
+}
+
+footer p {
+    margin-top: 15px;
+
+    color: var(--muted);
+}
+
+.footer-line {
+    max-width: 500px;
+
+    height: 1px;
+
+    background: var(--border);
+
+    margin: 30px auto;
+}
+
+footer small {
+    color: #555b6d;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counterRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes taskAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width: 950px) {
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 130px;
+    }
+
+    .hero-visual {
+        min-height: 450px;
+    }
+
+    .info-grid,
+    .roles,
+    .artifacts,
+    .board {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .section {
+        padding: 80px 5%;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .button {
+        text-align: center;
+    }
+
+    .stats {
+        gap: 25px;
+    }
+
+    .scrum-circle {
+        transform: scale(.72);
+    }
+
+    .floating-card {
+        right: 0;
+    }
+
+    .board-controls {
+        flex-direction: column;
+    }
+
+    .add-button {
+        height: 50px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ⚡
+        </div>
+
+        <span>
+            Scrum<span>Flow</span>
+        </span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#inicio">Início</a>
+
+        <a href="#scrum">Scrum</a>
+
+        <a href="#papeis">Papéis</a>
+
+        <a href="#eventos">Eventos</a>
+
+        <a href="#artefatos">Artefatos</a>
+
+        <a href="#board">Board</a>
+
+    </nav>
+
+
+    <button class="theme-button" id="themeButton">
+        ☾
+    </button>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="badge">
+
+            <span class="badge-dot"></span>
+
+            METODOLOGIA ÁGIL
+
+        </div>
+
+
+        <h1>
+
+            Transforme ideias em
+
+            <span class="gradient">
+                resultados.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Aprenda Scrum de uma forma simples, visual e interativa.
+            Organize equipes, acompanhe tarefas e entregue valor
+            continuamente.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#board"
+                class="button button-primary"
+            >
+                Começar agora →
+            </a>
+
+
+            <a
+                href="#scrum"
+                class="button button-secondary"
+            >
+                Conhecer Scrum
+            </a>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <strong>3</strong>
+
+                <span>Papéis</span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>5</strong>
+
+                <span>Eventos</span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>3</strong>
+
+                <span>Artefatos</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="hero-visual">
+
+        <div class="scrum-circle">
+
+            <div class="scrum-center">
+
+                <div class="scrum-center-icon">
+                    ↻
+                </div>
+
+                <strong>SCRUM</strong>
+
+            </div>
+
+
+            <div class="orbit orbit-1">
+                👥
+            </div>
+
+
+            <div class="orbit orbit-2">
+                🎯
+            </div>
+
+
+            <div class="orbit orbit-3">
+                ⚡
+            </div>
+
+        </div>
+
+
+        <div class="floating-card">
+
+            <div class="check">
+                ✓
+            </div>
+
+            <div class="floating-text">
+
+                <strong>Sprint concluída</strong>
+
+                <small>
+                    Projeto atualizado
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     O QUE É SCRUM
+===================================================== -->
+
+<section class="section" id="scrum">
+
+    <div class="section-header">
+
+        <span class="section-number">
+            01 — FUNDAMENTOS
+        </span>
+
+
+        <h2>
+            O que é
+            <span>Scrum?</span>
+        </h2>
+
+
+        <p>
+
+            Scrum é um framework ágil utilizado para desenvolver,
+            entregar e manter produtos complexos de maneira
+            incremental.
+
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+
+        <article class="info-card big">
+
+            <div class="icon-box purple-box">
+                🚀
+            </div>
+
+
+            <h3>
+                Desenvolvimento incremental
+            </h3>
+
+
+            <p>
+
+                O trabalho é dividido em pequenos ciclos chamados
+                Sprints. Cada ciclo produz um incremento do produto.
+
+            </p>
+
+
+            <div class="big-number">
+                01
+            </div>
+
+        </article>
+
+
+
+        <article class="info-card">
+
+            <div class="icon-box blue-box">
+                🔄
+            </div>
+
+
+            <h3>
+                Inspeção
+            </h3>
+
+
+            <p>
+
+                O progresso é analisado frequentemente para
+                identificar problemas e oportunidades.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="info-card">
+
+            <div class="icon-box green-box">
+                🔀
+            </div>
+
+
+            <h3>
+                Adaptação
+            </h3>
+
+
+            <p>
+
+                A equipe adapta seu trabalho conforme novas
+                informações aparecem.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PAPÉIS
+===================================================== -->
+
+<section class="section dark-section" id="papeis">
+
+    <div class="section-header">
+
+        <span class="section-number">
+            02 — TIME SCRUM
+        </span>
+
+
+        <h2>
+            Quem faz o
+            <span>Scrum?</span>
+        </h2>
+
+
+        <p>
+
+            O Scrum Team é formado por profissionais que trabalham
+            juntos para alcançar um objetivo comum.
+
+        </p>
+
+    </div>
+
+
+    <div class="roles">
+
+
+        <article class="role-card">
+
+            <div class="role-number">
+                01
+            </div>
+
+
+            <div class="role-icon">
+                👑
+            </div>
+
+
+            <h3>
+                Product Owner
+            </h3>
+
+
+            <p>
+
+                Responsável por maximizar o valor do produto
+                e gerenciar o Product Backlog.
+
+            </p>
+
+
+            <div class="role-tag">
+                VALOR
+            </div>
+
+        </article>
+
+
+
+        <article class="role-card featured">
+
+            <div class="role-number">
+                02
+            </div>
+
+
+            <div class="role-icon">
+                🧭
+            </div>
+
+
+            <h3>
+                Scrum Master
+            </h3>
+
+
+            <p>
+
+                Ajuda a equipe a compreender o Scrum e remove
+                impedimentos que dificultam o trabalho.
+
+            </p>
+
+
+            <div class="role-tag">
+                FACILITAÇÃO
+            </div>
+
+        </article>
+
+
+
+        <article class="role-card">
+
+            <div class="role-number">
+                03
+            </div>
+
+
+            <div class="role-icon">
+                💻
+            </div>
+
+
+            <h3>
+                Developers
+            </h3>
+
+
+            <p>
+
+                Profissionais responsáveis por criar o incremento
+                utilizável durante a Sprint.
+
+            </p>
+
+
+            <div class="role-tag">
+                ENTREGA
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EVENTOS
+===================================================== -->
+
+<section class="section" id="eventos">
+
+    <div class="section-header">
+
+        <span class="section-number">
+            03 — CICLO SCRUM
+        </span>
+
+
+        <h2>
+            Eventos de uma
+            <span>Sprint</span>
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-icon">
+                📅
+            </div>
+
+
+            <div class="timeline-content">
+
+                <small>
+                    EVENTO 01
+                </small>
+
+                <h3>
+                    Sprint Planning
+                </h3>
+
+                <p>
+
+                    A equipe define o objetivo da Sprint e seleciona
+                    os itens que serão trabalhados.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-icon">
+                ▶
+            </div>
+
+
+            <div class="timeline-content">
+
+                <small>
+                    EVENTO 02
+                </small>
+
+                <h3>
+                    Sprint
+                </h3>
+
+                <p>
+
+                    Período em que a equipe trabalha para transformar
+                    os itens selecionados em um incremento.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-icon">
+                💬
+            </div>
+
+
+            <div class="timeline-content">
+
+                <small>
+                    EVENTO 03
+                </small>
+
+                <h3>
+                    Daily Scrum
+                </h3>
+
+                <p>
+
+                    Momento diário para os Developers inspecionarem
+                    o progresso em direção ao Sprint Goal.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-icon">
+                👁
+            </div>
+
+
+            <div class="timeline-content">
+
+                <small>
+                    EVENTO 04
+                </small>
+
+                <h3>
+                    Sprint Review
+                </h3>
+
+                <p>
+
+                    O resultado da Sprint é apresentado e o produto
+                    é analisado com os stakeholders.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="timeline-item">
+
+            <div class="timeline-icon">
+                🧠
+            </div>
+
+
+            <div class="timeline-content">
+
+                <small>
+                    EVENTO 05
+                </small>
+
+                <h3>
+                    Sprint Retrospective
+                </h3>
+
+                <p>
+
+                    A equipe analisa como melhorar sua qualidade
+                    e efetividade.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ARTEFATOS
+===================================================== -->
+
+<section class="section dark-section" id="artefatos">
+
+    <div class="section-header">
+
+        <span class="section-number">
+            04 — ORGANIZAÇÃO
+        </span>
+
+
+        <h2>
+            Artefatos do
+            <span>Scrum</span>
+        </h2>
+
+
+        <p>
+
+            Os artefatos representam o trabalho ou o valor e foram
+            projetados para proporcionar transparência.
+
+        </p>
+
+    </div>
+
+
+    <div class="artifacts">
+
+
+        <article class="artifact">
+
+            <div class="artifact-icon">
+                📋
+            </div>
+
+            <h3>
+                Product Backlog
+            </h3>
+
+            <p>
+
+                Lista ordenada de tudo que pode ser necessário
+                para melhorar o produto.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="artifact">
+
+            <div class="artifact-icon">
+                📝
+            </div>
+
+            <h3>
+                Sprint Backlog
+            </h3>
+
+            <p>
+
+                Conjunto de itens selecionados para a Sprint,
+                além do plano para entregá-los.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="artifact">
+
+            <div class="artifact-icon">
+                🏆
+            </div>
+
+            <h3>
+                Incremento
+            </h3>
+
+            <p>
+
+                Soma dos itens do Product Backlog concluídos
+                durante uma Sprint.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SCRUM BOARD
+===================================================== -->
+
+<section class="section board-section" id="board">
+
+    <div class="section-header">
+
+        <span class="section-number">
+            05 — INTERATIVO
+        </span>
+
+
+        <h2>
+            Seu
+            <span>Scrum Board</span>
+        </h2>
+
+
+        <p>
+
+            Adicione tarefas e clique nelas para avançar pelo
+            fluxo do Scrum.
+
+        </p>
+
+    </div>
+
+
+    <div class="board-controls">
+
+        <input
+            type="text"
+            id="taskInput"
+            class="board-input"
+            placeholder="Digite uma nova tarefa..."
+        >
+
+
+        <button
+            class="add-button"
+            id="addButton"
+        >
+            + Adicionar tarefa
+        </button>
+
+    </div>
+
+
+    <div class="board">
+
+
+        <!-- A FAZER -->
+
+        <div class="column">
+
+            <div class="column-header">
+
+                <div class="column-name">
+
+                    <span class="dot dot-purple"></span>
+
+                    A FAZER
+
+                </div>
+
+
+                <span
+                    class="counter"
+                    id="todoCounter"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                class="tasks"
+                id="todo"
+            ></div>
+
+        </div>
+
+
+
+        <!-- EM ANDAMENTO -->
+
+        <div class="column">
+
+            <div class="column-header">
+
+                <div class="column-name">
+
+                    <span class="dot dot-orange"></span>
+
+                    EM ANDAMENTO
+
+                </div>
+
+
+                <span
+                    class="counter"
+                    id="doingCounter"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                class="tasks"
+                id="doing"
+            ></div>
+
+        </div>
+
+
+
+        <!-- CONCLUÍDO -->
+
+        <div class="column">
+
+            <div class="column-header">
+
+                <div class="column-name">
+
+                    <span class="dot dot-green"></span>
+
+                    CONCLUÍDO
+
+                </div>
+
+
+                <span
+                    class="counter"
+                    id="doneCounter"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                class="tasks"
+                id="done"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <div class="logo-icon">
+            ⚡
+        </div>
+
+        <span>
+            Scrum<span>Flow</span>
+        </span>
+
+    </div>
+
+
+    <p>
+        Aprenda. Planeje. Desenvolva. Entregue.
+    </p>
+
+
+    <div class="footer-line"></div>
+
+
+    <small>
+        Projeto educacional sobre Scrum • 2026
+    </small>
+
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   TEMA ESCURO / CLARO
+========================================================= */
+
+const themeButton =
+    document.getElementById("themeButton");
+
+let lightMode = false;
+
+themeButton.addEventListener("click", function() {
+
+    lightMode = !lightMode;
+
+    if (lightMode) {
+
+        document.documentElement.style.setProperty(
+            "--bg",
+            "#f4f4f7"
+        );
+
+        document.documentElement.style.setProperty(
+            "--bg2",
+            "#ffffff"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card",
+            "#ffffff"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card2",
+            "#eeeeF3"
+        );
+
+        document.documentElement.style.setProperty(
+            "--text",
+            "#16161c"
+        );
+
+        document.documentElement.style.setProperty(
+            "--muted",
+            "#666a75"
+        );
+
+        document.documentElement.style.setProperty(
+            "--border",
+            "rgba(0,0,0,.1)"
+        );
+
+        document.body.style.background = "#f4f4f7";
+
+        themeButton.textContent = "☀";
+
+    } else {
+
+        document.documentElement.style.setProperty(
+            "--bg",
+            "#07080d"
+        );
+
+        document.documentElement.style.setProperty(
+            "--bg2",
+            "#0e1018"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card",
+            "#141722"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card2",
+            "#191c29"
+        );
+
+        document.documentElement.style.setProperty(
+            "--text",
+            "#f5f5ff"
+        );
+
+        document.documentElement.style.setProperty(
+            "--muted",
+            "#999dac"
+        );
+
+        document.documentElement.style.setProperty(
+            "--border",
+            "rgba(255,255,255,.08)"
+        );
+
+        document.body.style.background = "#07080d";
+
+        themeButton.textContent = "☾";
+
+    }
+
+});
+
+
+/* =========================================================
+   SCRUM BOARD
+========================================================= */
+
+const taskInput =
+    document.getElementById("taskInput");
+
+const addButton =
+    document.getElementById("addButton");
+
+const todo =
+    document.getElementById("todo");
+
+const doing =
+    document.getElementById("doing");
+
+const done =
+    document.getElementById("done");
+
+const todoCounter =
+    document.getElementById("todoCounter");
+
+const doingCounter =
+    document.getElementById("doingCounter");
+
+const doneCounter =
+    document.getElementById("doneCounter");
+
+
+/* =========================================================
+   ATUALIZAR CONTADORES
+========================================================= */
+
+function updateCounters() {
+
+    todoCounter.textContent =
+        todo.children.length;
+
+    doingCounter.textContent =
+        doing.children.length;
+
+    doneCounter.textContent =
+        done.children.length;
+
+}
+
+
+/* =========================================================
+   CRIAR TAREFA
+========================================================= */
+
+function createTask(text) {
+
+    const task =
+        document.createElement("div");
+
+    task.className = "task";
+
+    task.innerHTML = `
+        ${escapeHTML(text)}
+        <small>
+            Clique para avançar →
+        </small>
+    `;
+
+
+    task.addEventListener("click", function() {
+
+        if (task.parentElement === todo) {
+
+            doing.appendChild(task);
+
+        }
+
+        else if (task.parentElement === doing) {
+
+            done.appendChild(task);
+
+        }
+
+        else {
+
+            task.remove();
+
+        }
+
+        updateCounters();
+
+    });
+
+
+    todo.appendChild(task);
+
+    updateCounters();
+
+}
+
+
+/* =========================================================
+   PROTEÇÃO CONTRA HTML
+========================================================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   ADICIONAR TAREFA
+========================================================= */
+
+function addNewTask() {
+
+    const text =
+        taskInput.value.trim();
+
+
+    if (text === "") {
+
+        taskInput.focus();
+
+        return;
+
+    }
+
+
+    createTask(text);
+
+    taskInput.value = "";
+
+    taskInput.focus();
+
+}
+
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+addButton.addEventListener(
+    "click",
+    addNewTask
+);
+
+
+/* =========================================================
+   ENTER
+========================================================= */
+
+taskInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            addNewTask();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TAREFAS INICIAIS
+========================================================= */
+
+createTask("Criar página inicial");
+
+createTask("Definir requisitos");
+
+createTask("Criar banco de dados");
+
+createTask("Desenvolver sistema de login");
+
+
+// Demonstração do fluxo
+
+if (todo.children.length > 0) {
+
+    doing.appendChild(
+        todo.children[0]
+    );
+
+}
+
+if (todo.children.length > 0) {
+
+    done.appendChild(
+        todo.children[0]
+    );
+
+}
+
+updateCounters();
+
+</script>
+
+</body>
+</html>
